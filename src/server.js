@@ -24,13 +24,13 @@ mongoose.connect(process.env.MONGO_URI, {
   connectTimeoutMS: 10000,
 })
   .then(() => {
-    console.log('✅ MongoDB connected successfully');
+    console.log('MongoDB connected successfully');
     app.listen(process.env.PORT, () => {
-      console.log(`✅ Server running on port ${process.env.PORT}`);
+      console.log(`Server running on port ${process.env.PORT}`);
     });
   })
   .catch((err) => {
-    console.error('❌ MongoDB connection failed:', err.message);
+    console.error('MongoDB connection failed:', err.message);
     process.exit(1);
   });
 
