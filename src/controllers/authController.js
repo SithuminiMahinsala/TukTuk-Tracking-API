@@ -3,9 +3,9 @@ import bcrypt from 'bcryptjs';
 import User from '../models/User.js';
 
 const generateToken = (id) => {
-    return jwt.sign({ id}, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_SECRET_IN,
-    });
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: '7d',
+  });
 };
 
 // POST /api/auth/register
