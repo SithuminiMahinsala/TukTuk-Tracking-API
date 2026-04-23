@@ -107,7 +107,7 @@ const seed = async () => {
       ssl: true,
       family: 4,
     });
-    console.log('✅ MongoDB connected');
+    console.log('MongoDB connected');
 
     // Clear existing data
     await Promise.all([
@@ -118,11 +118,11 @@ const seed = async () => {
       TukTuk.deleteMany(),
       LocationPing.deleteMany(),
     ]);
-    console.log('🗑️  Cleared existing data');
+    console.log('Cleared existing data');
 
     // Seed provinces
     const createdProvinces = await Province.insertMany(provinces);
-    console.log(`✅ ${createdProvinces.length} provinces seeded`);
+    console.log(`${createdProvinces.length} provinces seeded`);
 
     // Seed districts
     const districtDocs = districts.map(d => ({
@@ -131,7 +131,7 @@ const seed = async () => {
       province: createdProvinces.find(p => p.name === d.provinceName)._id,
     }));
     const createdDistricts = await District.insertMany(districtDocs);
-    console.log(`✅ ${createdDistricts.length} districts seeded`);
+    console.log(`${createdDistricts.length} districts seeded`);
 
     // Seed police stations
     const stationDocs = policeStations.map(s => {
@@ -147,7 +147,7 @@ const seed = async () => {
       };
     });
     const createdStations = await PoliceStation.insertMany(stationDocs);
-    console.log(`✅ ${createdStations.length} police stations seeded`);
+    console.log(`${createdStations.length} police stations seeded`);
 
     // Seed admin user
     const hashedPassword = await bcrypt.hash('Admin@1234', 10);
@@ -157,7 +157,7 @@ const seed = async () => {
       password: hashedPassword,
       role: 'hq_admin',
     });
-    console.log('✅ Admin user created — email: admin@police.lk password: Admin@1234');
+    console.log('Admin user created — email: admin@police.lk password: Admin@1234');
 
     // Seed 200 tuk-tuks with location history
     console.log('⏳ Seeding 200 tuk-tuks and location history...');
@@ -205,13 +205,13 @@ const seed = async () => {
       if (i % 50 === 0) console.log(`   ${i}/200 tuk-tuks seeded...`);
     }
 
-    console.log(`✅ 200 tuk-tuks seeded`);
-    console.log(`✅ ${totalPings} location pings seeded`);
-    console.log('🎉 All seed data inserted successfully!');
+    console.log(`200 tuk-tuks seeded`);
+    console.log(` ${totalPings} location pings seeded`);
+    console.log(' All seed data inserted successfully!');
     process.exit(0);
 
   } catch (err) {
-    console.error('❌ Seeding failed:', err.message);
+    console.error('Seeding failed:', err.message);
     process.exit(1);
   }
 };
