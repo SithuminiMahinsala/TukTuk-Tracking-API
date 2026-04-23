@@ -3,6 +3,11 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+import authRoutes from './routes/authRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
+import tukTukRoutes from './routes/tukTukRoutes.js';
+import locationRoutes from './routes/locationRoutes.js';
+
 dotenv.config();
 
 const app = express();
@@ -10,11 +15,20 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Health check
 app.get('/', (req, res) => {
-  res.json({ 
-    message: 'Tuk-Tuk Tracking API is running',
-    status: 'OK'
-  });
+  res.json({ message: 'Tuk-Tuk Tracking API is running', status: 'OK' });
+});
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/tuktuk', tukTukRoutes);
+app.use('/api/location', locationRoutes);
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ message: 'Route not found' });
 });
 
 mongoose.connect(process.env.MONGO_URI, {
