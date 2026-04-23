@@ -160,7 +160,7 @@ const seed = async () => {
     console.log('Admin user created — email: admin@police.lk password: Admin@1234');
 
     // Seed 200 tuk-tuks with location history
-    console.log('⏳ Seeding 200 tuk-tuks and location history...');
+    console.log('Seeding 200 tuk-tuks and location history...');
     let totalPings = 0;
 
     for (let i = 1; i <= 200; i++) {
