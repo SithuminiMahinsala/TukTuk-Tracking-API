@@ -10,7 +10,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://tuktuk-production.eba-xpwv48ku.ap-southeast-1.elasticbeanstalk.com/',
+        url: 'http://tuktuk-production.eba-xpwv48ku.ap-southeast-1.elasticbeanstalk.com',
         description: 'Production server',
       },
       {
