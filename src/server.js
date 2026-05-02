@@ -2,11 +2,13 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import swaggerUi from 'swagger-ui-express';
 
 import authRoutes from './routes/authRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import tukTukRoutes from './routes/tukTukRoutes.js';
 import locationRoutes from './routes/locationRoutes.js';
+import swaggerSpec from './swagger.js';
 
 dotenv.config();
 
@@ -15,9 +17,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Swagger docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 // Health check
 app.get('/', (req, res) => {
-  res.json({ message: 'Tuk-Tuk Tracking API is running', status: 'OK' });
+  res.json({ 
+    message: 'Tuk-Tuk Tracking API is running', 
+    status: 'OK',
+    docs: '/api-docs'
+  });
 });
 
 // Routes
