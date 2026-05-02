@@ -20,7 +20,7 @@ app.use(express.json());
 // Swagger docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Health check
+
 app.get('/', (req, res) => {
   res.json({ 
     message: 'Tuk-Tuk Tracking API is running', 
@@ -35,7 +35,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/tuktuk', tukTukRoutes);
 app.use('/api/location', locationRoutes);
 
-// 404 handler
+
 app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
